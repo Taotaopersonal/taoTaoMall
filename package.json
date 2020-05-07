@@ -9,7 +9,11 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "better-scroll": "^1.15.2",
     "core-js": "^3.6.4",
+    "lib-flexible": "^0.3.2",
+    "postcss-px2rem-exclude": "0.0.6",
+    "swiper": "^5.3.8",
     "vant": "^2.8.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
@@ -49,6 +53,15 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run lint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "postcss-px2rem-exclude": {
+        "remUnit": 75,
+        "exclude": "/node_modules|floder_name/i"
+      }
     }
   }
 }

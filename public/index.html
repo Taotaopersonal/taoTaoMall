@@ -4,11 +4,20 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-  <link href="https://cdn.bootcdn.net/ajax/libs/minireset.css/0.0.2/minireset.min.css" rel="stylesheet">
-  <title><%= htmlWebpackPlugin.options.title %></title>
+  <link href="<%= BASE_URL %>css/reset.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_1803132_el0ml9mwjf7.css">
+  <title>涛涛网上商城，为你甄选优质商品</title>
 </head>
+<style>
+
+  body{
+    line-height: 1.5;
+    color: #333;
+    outline: 0;
+    font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  }
+</style>
 
 <body>
   <noscript>
@@ -17,6 +26,7 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  <script src="https://cdn.bootcss.com/holder/2.9.4/holder.js"></script>
   <script src="https://cdn.bootcdn.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
   <script>
     if ('addEventListener' in document) {

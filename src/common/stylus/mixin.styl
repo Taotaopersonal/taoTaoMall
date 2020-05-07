@@ -1,0 +1,45 @@
+//自定义高度的px边框混合定义
+border-px($color,$height)
+  position relative
+  &:after
+    position absolute
+    left 0
+    bottom 0
+    display block
+    content ""
+    width 100%
+    height $height
+    background-color $color
+    @media only screen and (-webkit-device-pixel-ratio:2)
+      transform scaleY(.5)
+        
+    @media only screen and (-webkit-device-pixel-ratio:3)
+      transform scaleY(0.333)
+
+// 隐藏伪元素(清除1px边框)
+border-none()
+  &:after
+    display: none
+    content: ""
+
+//背景图片混合定义
+bg-image($imgName,$format)
+  @media only screen and (-webkit-device-pixel-ratio:2)
+    background-image url("./img/"+$imgName+"."+$format)
+        
+  @media only screen and (-webkit-device-pixel-ratio:3)
+    background-image url("./img/"+$imgName+"."+$format)
+
+//元素垂直水平居中混合
+center()
+  display flex
+  justify-content center
+  align-items center
+
+// 元素横向排列不换行水平垂直居中
+inlineCenter()
+  display flex
+  flex-flow row nowrap 
+  align-items center
+  justify-content center
+  text-align center

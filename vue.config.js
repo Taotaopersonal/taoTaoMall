@@ -6,6 +6,18 @@ function resolve(dir) {
 
 module.exports = {
   lintOnSave: true,
+  css: {
+    loaderOptions: {
+      postcss: {
+        // 这是rem适配的配置  注意： remUnit在这里要根据lib-flexible的规则来配制，如果您的设计稿是750px的，用75就刚刚好。
+        plugins: [
+          require("postcss-px2rem-exclude")({
+            remUnit: 75
+          })
+        ]
+      }
+    }
+  },
   devServer: {
     // host: "127.0.0.1",
     port: 3000,
@@ -33,8 +45,8 @@ module.exports = {
         'common': resolve('src/common'),
         'util': resolve('src/util'),
         'routes': resolve('src/routes'),
-        'router': resolve('src/router'),
+        'router': resolve('src/router')
       }
-    },
+    }
   }
 }

@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    hello vue
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'App'
-}
+  name: "App"
+};
 </script>
 
-<style>
+<style scoped lang="stylus">
+#app
+  width 100%
+  height 100%
+  overflow auto
 </style>
