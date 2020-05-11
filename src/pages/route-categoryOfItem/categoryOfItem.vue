@@ -54,7 +54,7 @@ export default {
 .subCateList {
   flex: 1;
   padding: 30px 30px 21px;
-  height: height 100%;
+  height: 100%;
   overflow: auto;
 
   .subCateContainer {
