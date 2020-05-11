@@ -1,4 +1,4 @@
-import shop from '@/http/shop'
+import home from '@/http/home'
 export default {
-  shop
+  home
 }

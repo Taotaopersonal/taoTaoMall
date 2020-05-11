@@ -1,3 +1,7 @@
 export default {
-  test:'test'
+  totalNumbersOfProducts: 0,
+  indexData: {},
+  indexCateModule: [],
+  cateListsItem: [],
+  cateNavDatas:{}
 }

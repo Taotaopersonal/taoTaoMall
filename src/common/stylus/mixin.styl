@@ -8,7 +8,7 @@ border-px($color,$height)
     display block
     content ""
     width 100%
-    height $height
+    height $height 
     background-color $color
     @media only screen and (-webkit-device-pixel-ratio:2)
       transform scaleY(.5)
@@ -26,9 +26,11 @@ border-none()
 bg-image($imgName,$format)
   @media only screen and (-webkit-device-pixel-ratio:2)
     background-image url("./img/"+$imgName+"."+$format)
+    background-size 100% 100%
         
   @media only screen and (-webkit-device-pixel-ratio:3)
     background-image url("./img/"+$imgName+"."+$format)
+    background-size 100% 100%
 
 //元素垂直水平居中混合
 center()
@@ -43,3 +45,8 @@ inlineCenter()
   align-items center
   justify-content center
   text-align center
+
+  // 标准flex水平排列不换行
+standard-flex()
+  display flex
+  flex-wrap row nowrap

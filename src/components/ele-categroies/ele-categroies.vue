@@ -1,65 +1,11 @@
 <template>
   <div class="goodCategories">
     <div class="cateWrap">
-      <a class="cateItem" href="javascript">
+      <a v-for="(item, index) in kingKongList" :key="index" class="cateItem" :href="item.schemeUrl">
         <div class="icon">
-          <img data-src="holder.js/110x110" />
+          <img :src="item.picUrl" />
         </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
-      </a>
-      <a class="cateItem" href="javascript">
-        <div class="icon">
-          <img data-src="holder.js/110x110" />
-        </div>
-        <div class="txt">新品首发</div>
+        <div class="txt" :style="{color:'#'+item.textColor}">{{item.text}}</div>
       </a>
     </div>
   </div>
@@ -67,7 +13,10 @@
 
 <script>
 export default {
-  name: "goodCategroies"
+  name: "goodCategroies",
+  props:{
+    kingKongList: Array
+  }
 };
 </script>
 
@@ -75,6 +24,7 @@ export default {
 .goodCategories {
   width: 100%;
   height: 372px;
+  background-color #fff
 
   .cateWrap {
     display: flex;
@@ -91,7 +41,6 @@ export default {
       .icon {
         width: 110px;
         height: 110px;
-        background-color #ccc
         border-radius 30px
         overflow hidden
        

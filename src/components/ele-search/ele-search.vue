@@ -1,7 +1,7 @@
 <template>
-  <div class="topSearchIpt" :style="`width:${width}`">
+  <div class="topSearchIpt">
     <i class="icon"></i>
-    <span class="placeholder">搜索商品,共26221款好物</span>
+    <span class="placeholder">搜索商品,共{{totalNumbersOfProducts}}款好物</span>
   </div>
 </template>
 
@@ -9,9 +9,7 @@
 export default {
   name: "Search",
   props:{
-    width:{
-      type:String
-    } 
+    totalNumbersOfProducts:Number
   }
 };
 </script>
@@ -25,7 +23,7 @@ export default {
     justify-content center
     align-items center
     flex-grow 1   
-    // width 442px
+    /* width 442px */
     height 56px
     font-size 28px
     background-color rgb(237, 237, 237)

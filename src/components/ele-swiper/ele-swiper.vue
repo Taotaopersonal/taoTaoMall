@@ -1,48 +1,32 @@
 <template>
   <div class="swiper-container" ref="swiperContainer">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img data-src="holder.js/750x370" alt="300x500" />
-      </div>
-      <div class="swiper-slide">
-        <img data-src="holder.js/750x370" alt="300x500" />
-      </div>
-      <div class="swiper-slide">
-        <img data-src="holder.js/750x370" alt="300x500" />
-      </div>
-      <div class="swiper-slide">
-        <img data-src="holder.js/750x370" alt="300x500" />
-      </div>
-      <div class="swiper-slide">
-        <img data-src="holder.js/750x370" alt="300x500" />
-      </div>
-      <div class="swiper-slide">
-        <img data-src="holder.js/750x370" alt="300x500" />
-      </div>
-    </div>
-    <!-- 如果需要分页器 -->
-    <div class="swiper-pagination"></div>
+    <van-swipe class="swiper-wrapper" :stop-propagation="false" :lazy-render="true">
+      <van-swipe-item  v-for="(item, index) in focusList" :key="index" class="swiper-slide">
+        <a :href="item.targetUrl">
+          <img v-lazy="item.picUrl" />
+        </a>
+      </van-swipe-item>
+    </van-swipe>
   </div>
 </template>
 
 <script>
+// 懒加载组件
+import Vue from "vue";
+import { Lazyload } from "vant";
+Vue.use(Lazyload, {
+  error: "@/assets/logo.png"
+});
+import { Swipe, SwipeItem } from "vant";
+
 export default {
   name: "Swiper",
-  mounted() {
-    this.renderSwiper();
+  props: {
+    focusList: Array
   },
-  methods: {
-    renderSwiper() {
-      this.$nextTick(() => {
-        new this.Swiper(this.$refs.swiperContainer, {
-          loop: true, // 循环模式选项
-          // 如果需要分页器
-          pagination: {
-            el: ".swiper-pagination"
-          }
-        });
-      });
-    }
+  components: {
+    [Swipe.name]: Swipe,
+    [SwipeItem.name]: SwipeItem
   }
 };
 </script>
