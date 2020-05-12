@@ -1,6 +1,6 @@
 <template>
   <div class="swiper-container" ref="swiperContainer">
-    <van-swipe class="swiper-wrapper" :stop-propagation="false" :lazy-render="true">
+    <van-swipe class="swiper-wrapper" :stop-propagation="false" :lazy-render="false">
       <van-swipe-item  v-for="(item, index) in focusList" :key="index" class="swiper-slide">
         <a :href="item.targetUrl">
           <img v-lazy="item.picUrl" />

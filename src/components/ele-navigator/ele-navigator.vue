@@ -3,40 +3,40 @@
     <nav class="bottomNav">
       <div
         class="item"
-        :class="{active:currentIndex === 1}"
-        @click="$router.replace('/home');currentIndex = 1"
+        :class="{active:1 ===  $route.meta.id}"
+        @click="$router.replace('/home');"
       >
         <div class="iconfont icon-shouye1"></div>
         <span class="txt">首页</span>
       </div>
       <div
         class="item"
-        :class="{active:currentIndex === 2}"
-        @click="$router.replace('/categroy');currentIndex = 2"
+        :class="{active:2 ===  $route.meta.id}"
+        @click="$router.replace('/categroy');"
       >
         <div class="iconfont icon-fenlei"></div>
         <span class="txt">分类</span>
       </div>
       <div
         class="item"
-        :class="{active:currentIndex === 3}"
-        @click="$router.replace('/worthBuying');currentIndex = 3"
+        :class="{active:3 ===  $route.meta.id}"
+        @click="$router.replace('/worthBuying');"
       >
         <div class="iconfont icon-gouwu"></div>
         <span class="txt">值得买</span>
       </div>
       <div
         class="item"
-        :class="{active:currentIndex === 4}"
-        @click="$router.replace('/cart');currentIndex = 4"
+        :class="{active:4 === $route.meta.id}"
+        @click="$router.replace('/cart');"
       >
         <div class="iconfont icon-gouwuche"></div>
         <span class="txt">购物车</span>
       </div>
       <div
         class="item"
-        :class="{active:currentIndex === 5}"
-        @click="$router.replace('/profile');currentIndex = 5"
+        :class="{active:5 ===  $route.meta.id}"
+        @click="$router.replace('/profile');"
       >
         <div class="iconfont icon-wode"></div>
         <span class="txt">个人</span>
@@ -47,12 +47,7 @@
 
 <script>
 export default {
-  name: "Navigator",
-  data() {
-    return {
-      currentIndex: 1
-    };
-  }
+  name: "Navigator"
 };
 </script>
 

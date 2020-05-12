@@ -1,49 +1,70 @@
 <template>
-  <div class="subCateList">
-    <div class="subCateContainer">
+  <div class="subCateList" ref="subCateListWraper">
+    <div class="subCateContainer" v-if="cateListsItem[0]">
       <div class="banner">
-        <img src="" alt />
+        <img :src="cateListsItem[0].bannerUrl" alt />
       </div>
       <div class="cateList">
-        <div class="hd"></div>
-        <ul class="list">
-          <li class="cateItem">
-            <div class="cateImgWraper">
-              <img src="" alt />
-            </div>
-            <div class="name">{{id}}</div>
-          </li>
-        </ul>
+        <div v-for="(item, index) in cateListsItem[0].categoryList" :key="index">
+          <div class="hd">{{item.name}}</div>
+          <ul class="list">
+            <li
+              class="cateItem"
+              v-for="(item, index) in cateListsItem[0].categoryList"
+              :key="index"
+            >
+              <div class="cateImgWraper" v-if="item">
+                <img :src="item.bannerUrl" alt />
+              </div>
+              <div class="name">{{item.name}}</div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapActions,mapState} from 'vuex'
-import {GET_CATELISTSITEM} from 'store/mutation_types'
+import { mapActions, mapState } from "vuex";
+import { GET_CATELISTSITEM } from "store/mutation_types";
 export default {
   name: "cateSideList",
   props: {
-    id: String,
+    id: String
   },
   computed: {
     ...mapState({
-      cateListsItem:state=>state.home.cateListsItem
+      cateListsItem: state => state.home.cateListsItem
     })
   },
-  mounted() {
-    this.initData()
+  async created() {
+    await this.initData();
+    this.initCateSideListBS();
   },
   methods: {
     ...mapActions([GET_CATELISTSITEM]),
-    async initData(){
-      await this[GET_CATELISTSITEM](this.id)
+    async initData() {
+      await this[GET_CATELISTSITEM](this.id);
+    },
+    initCateSideListBS() {
+      this.$nextTick(() => {
+        this.$refs.subCateListWraper &&
+          new this.BScroll(this.$refs.subCateListWraper, {
+            click: true
+          });
+      });
     }
   },
-  beforeUpdate() {
-    this.initData()
-  },
+  watch: {
+    $route() {
+      this.initData();
+    }
+  }
+  // beforeRouteUpdate(to, from, next) {
+  //   this.initData();
+  //   next();
+  // }
 };
 </script>
 
@@ -54,12 +75,9 @@ export default {
 .subCateList {
   flex: 1;
   padding: 30px 30px 21px;
-  height: 100%;
-  overflow: auto;
+  overflow: hidden;
 
   .subCateContainer {
-    height: 2000px;
-
     .banner {
       width: 100%;
       height: 192px;

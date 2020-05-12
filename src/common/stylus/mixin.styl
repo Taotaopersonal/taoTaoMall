@@ -46,7 +46,25 @@ inlineCenter()
   justify-content center
   text-align center
 
-  // 标准flex水平排列不换行
-standard-flex()
+// 元素横向排列不换行水平两端对齐
+btwCenter()
   display flex
-  flex-wrap row nowrap
+  flex-flow row nowrap 
+  align-items center
+  justify-content space-between
+  text-align center
+
+// 元素横向排列不换行水平分散对齐
+ardCenter()
+  display flex
+  flex-flow row nowrap 
+  align-items center
+  justify-content space-between
+  text-align center
+
+//清除浮动
+clearFix()
+  &::after
+    content ''
+    display block
+    clear both

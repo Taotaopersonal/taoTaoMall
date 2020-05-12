@@ -18,6 +18,14 @@ module.exports = {
         pathRewrite: {
           "^/4000": ""
         }
+      },
+      "/wangyi": {
+        target: "https://m.you.163.com",
+        changeOrigin: true,
+        pathRewrite: {
+          "^/wangyi": ""
+        },
+        secure:true
       }
     },
     open: true,

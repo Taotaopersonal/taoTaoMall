@@ -13,7 +13,7 @@ module.exports = ({ file }) => {
       pxtorem({
         rootValue: rootValue,
         propList: ['*'],
-        minPixelValue: 2
+        minPixelValue: 3.5
       })
     ]
   }

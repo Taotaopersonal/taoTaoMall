@@ -16,9 +16,7 @@
           />
         </van-sidebar>
       </div>
-      <keep-alive>
-        <router-view>口碑物品</router-view>
-      </keep-alive>
+      <router-view></router-view>
     </section>
   </div>
 </template>
@@ -56,9 +54,10 @@ export default {
       cateNavDatas: state => state.home.cateNavDatas
     })
   },
-  mounted() {
+  created() {
     this.initData();
   },
+  mounted() {},
   methods: {
     ...mapActions([GET_TOTAL_NUMBERS_OF_PRODUCTS, GET_CATENAVDATAS]),
     async initData() {

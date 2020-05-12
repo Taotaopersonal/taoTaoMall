@@ -79,7 +79,7 @@ export default {
     overflow: hidden;
 
     .line1 {
-      standard-flex();
+      center();
 
       .item-1, .item-2 {
         position: relative;

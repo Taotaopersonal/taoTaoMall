@@ -148,7 +148,12 @@
     </section>
     <!-- 回到顶部固定控件 -->
     <footer>
-      <button id="backTop" v-show="isShowing" class="iconfont icon-icon_huaban" @click="backTopFn"></button>
+      <button
+        id="backTop"
+        v-show="backTopBtnisShowing"
+        class="iconfont icon-icon_huaban"
+        @click="backTopFn"
+      ></button>
     </footer>
   </div>
 </template>
@@ -184,8 +189,7 @@ export default {
       currentIndex: -1,
       toggleActive: false,
       isLoading: false,
-      show: false,
-      isShowing: false
+      backTopBtnisShowing: false
     };
   },
   components: {
@@ -208,10 +212,13 @@ export default {
       indexCateModule: state => state.home.indexCateModule
     })
   },
-  mounted() {
-    this.observeScorll();
+  created() {
     this.initPageData();
+  },
+  mounted() {
+    // this.observeScorll();
     this.initCateScroll();
+    this.initWholeScroll();
   },
   methods: {
     ...mapActions([
@@ -226,10 +233,27 @@ export default {
     },
     initCateScroll() {
       this.$nextTick(() => {
-        new this.BScroll(this.$refs.cateScroll, {
-          click: true,
-          scrollX: true
-        });
+        this.$refs.cateScroll &&
+          new this.BScroll(this.$refs.cateScroll, {
+            click: true,
+            scrollX: true
+          });
+      });
+    },
+    initWholeScroll() {
+      this.$nextTick(() => {
+        if (this.$refs.wraper) {
+          this.wraperBS = new this.BScroll(this.$refs.wraper, {
+            click: true,
+            bounce: false,
+            probeType: 3,
+            scrollbar: {
+              fade: true,
+              interactive: true // 1.8.0 新增
+            }
+          });
+          this.wraperBS.on("scroll", this.onScroll);
+        }
       });
     },
     handleC(index) {
@@ -242,22 +266,28 @@ export default {
     },
     // 绑定scorll监听事件
     observeScorll() {
-      this.$refs.wraper.addEventListener("scroll", this.handleScroll);
+      // console.log(this.wraperScroll.y);
+      // this.$refs.wraper.addEventListener("scroll", this.handleScroll);
     },
-    handleScroll() {
-      // 滚动操作监听
-      let scrollTop = this.$refs.wraper.scrollTop;
-      this.isShowing = scrollTop > 1500;
-    },
+    // handleScroll() {
+    //   // 滚动操作监听
+    //   this.backTopBtnisShowing = this.wraperScroll.y > 1500;
+    // },
     backTopFn() {
       // 使用requestAnimationFrame添加动画效果
-      let gotoTop = () => {
-        this.$refs.wraper.scrollTop -= 150;
-        if (this.$refs.wraper.scrollTop > 0) {
-          window.requestAnimationFrame(gotoTop);
-        }
-      };
-      window.requestAnimationFrame(gotoTop);
+      // let gotoTop = () => {
+      //   this.$refs.wraper.scrollTop -= 150;
+      //   if (this.$refs.wraper.scrollTop > 0) {
+      //     window.requestAnimationFrame(gotoTop);
+      //   }
+      // };
+      // window.requestAnimationFrame(gotoTop);
+      this.wraperBS.scrollTo(0, 0, 200);
+    },
+    onScroll({ y }) {
+      let dis = Math.abs(y);
+      if (dis > 1500) this.backTopBtnisShowing = true;
+      if (dis < 1500) this.backTopBtnisShowing = false;
     }
   }
 };
@@ -391,6 +421,11 @@ export default {
           height: 60px;
           text-align: center;
           background-color: #fff;
+          border-width: 0;
+
+          &.before {
+            display: none;
+          }
 
           &.toggleActive {
             .icon {
@@ -447,12 +482,12 @@ export default {
   // 主体内容区
   #wraper {
     width: 100%;
-    flex: 1;
-    padding-bottom: 99px;
-    overflow: auto;
+    overflow: hidden;
 
     .big-container {
       -webkit-overflow-scrolling: touch;
+      padding-bottom: 99px;
+      padding-top: 10px;
 
       .container {
         background-color: #fff;
