@@ -2,13 +2,13 @@
 
 ## 项目介绍
 
-该项目是一个不B/S架构的微型网上商城应用,仿网易严选商城.
+该项目是一个B/S架构的微型网上商城应用,仿网易严选商城.
 
-开发技术栈为:Vue | Node.js | [mongoDB]
+开发技术栈为:**Vue** | **Node.js** | **[mongoDB]**
 
-开发环境:vueRouter | Vuex 
+开发环境: **vueRouter** | **Vuex** 
 
-所用组件以及相关插件:vant | better-scroll | lib-flexible+postcss-pxtorem | swiper
+所用组件以及相关插件: **vant** | **better-scroll** | **lib-flexible+postcss-pxtorem** | **swiper**
 
 ## 项目亮点
 
