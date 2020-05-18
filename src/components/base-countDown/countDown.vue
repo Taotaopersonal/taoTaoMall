@@ -13,8 +13,8 @@ import { CountDown } from "vant";
 
 export default {
   name: "CountDown",
-  props:{
-    remainTime:Number
+  props: {
+    remainTime: Number
   },
   data() {
     return {
@@ -29,15 +29,16 @@ export default {
     [CountDown.name]: CountDown
   },
   methods: {
-    hanldeChange(timeData){
-      this.timeData = timeData
+    hanldeChange(timeData) {
+      this.timeData = timeData;
     }
-  },
+  }
 };
 </script>
 
 <style scoped lang="stylus">
-@import "../../common/stylus/color.styl"
+@import '../../common/stylus/color.styl';
+
 .countDown {
   display: inline-block;
 
@@ -51,9 +52,9 @@ export default {
     display: inline-block;
     border-radius: 4px;
     width: 36px;
-    height 36px;
-    line-height 36px
-    margin 0 10px
+    height: 36px;
+    line-height: 36px;
+    margin: 0 10px;
     color: #fff;
     font-size: 24px;
     text-align: center;

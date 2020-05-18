@@ -1,11 +1,7 @@
 <template>
   <footer id="bottomNav">
     <nav class="bottomNav">
-      <div
-        class="item"
-        :class="{active:1 ===  $route.meta.id}"
-        @click="$router.replace('/home');"
-      >
+      <div class="item" :class="{active:1 ===  $route.meta.id}" @click="$router.replace('/home');">
         <div class="iconfont icon-shouye1"></div>
         <span class="txt">首页</span>
       </div>
@@ -25,11 +21,7 @@
         <div class="iconfont icon-gouwu"></div>
         <span class="txt">值得买</span>
       </div>
-      <div
-        class="item"
-        :class="{active:4 === $route.meta.id}"
-        @click="$router.replace('/cart');"
-      >
+      <div class="item" :class="{active:4 === $route.meta.id}" @click="$router.replace('/cart');">
         <div class="iconfont icon-gouwuche"></div>
         <span class="txt">购物车</span>
       </div>

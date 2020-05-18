@@ -2,7 +2,7 @@
   <div class="subCateList" ref="subCateListWraper">
     <div class="subCateContainer" v-if="cateListsItem[0]">
       <div class="banner">
-        <img :src="cateListsItem[0].bannerUrl" alt />
+        <img v-lazy="cateListsItem[0].bannerUrl" alt />
       </div>
       <div class="cateList">
         <div v-for="(item, index) in cateListsItem[0].categoryList" :key="index">
@@ -14,7 +14,7 @@
               :key="index"
             >
               <div class="cateImgWraper" v-if="item">
-                <img :src="item.bannerUrl" alt />
+                <img v-lazy="item.bannerUrl" alt />
               </div>
               <div class="name">{{item.name}}</div>
             </li>
@@ -38,10 +38,12 @@ export default {
       cateListsItem: state => state.home.cateListsItem
     })
   },
-  async created() {
+  created() {},
+  async beforeMount() {
     await this.initData();
     this.initCateSideListBS();
   },
+  mounted() {},
   methods: {
     ...mapActions([GET_CATELISTSITEM]),
     async initData() {

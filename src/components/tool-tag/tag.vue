@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="tagWraper">
     <span class="gradientPrice">{{txt}}</span>
   </div>

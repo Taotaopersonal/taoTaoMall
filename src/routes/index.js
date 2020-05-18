@@ -4,13 +4,18 @@ import worthBuying from 'pages/route-worthBuying/worthBuying.vue'
 import cart from 'pages/route-cart/cart.vue'
 import profile from 'pages/route-profile/profile.vue'
 import categoryOfItem from 'pages/route-categoryOfItem/categoryOfItem.vue'
+import search from 'pages/route-search/search.vue'
+import loginByPhone from 'pages/route-loginByPhone/loginByPhone.vue'
+import loginByPwd from 'pages/route-loginByPwd/loginByPwd.vue'
 
+
+// import store from 'store'
 export default [{
     path: '/home',
     component: home,
     meta: {
       showFooter: true,
-      id:1
+      id: 1
     },
   },
   {
@@ -18,14 +23,14 @@ export default [{
     component: categroy,
     meta: {
       showFooter: true,
-      id:2
+      id: 2
     },
     children: [{
         path: ':id',
         component: categoryOfItem,
         meta: {
           showFooter: true,
-          id:2
+          id: 2
         },
         props: true
       },
@@ -34,7 +39,7 @@ export default [{
         redirect: '11',
         meta: {
           showFooter: true,
-          id:2
+          id: 2
         },
       }
     ]
@@ -44,7 +49,7 @@ export default [{
     component: worthBuying,
     meta: {
       showFooter: true,
-      id:3
+      id: 3
     },
   },
   {
@@ -52,7 +57,7 @@ export default [{
     component: cart,
     meta: {
       showFooter: true,
-      id:4
+      id: 4
     },
   },
   {
@@ -60,15 +65,47 @@ export default [{
     component: profile,
     meta: {
       showFooter: false,
-      id:5
+      id: 5
     },
+  },
+  {
+    path: "/search",
+    component: search
+  },
+  {
+    path: "/loginByPhone",
+    component: loginByPhone,
+    meta: {
+      showFooter: false
+    },
+    // beforeEnter: (to, from, next) => {
+    //   if (store.state.login.loginData._id) {
+    //     next('/')
+    //   } else {
+    //     next()
+    //   }
+    // }
+  },
+  {
+    path: "/loginByPwd",
+    component: loginByPwd,
+    meta: {
+      showFooter: false
+    },
+    // beforeEnter: (to, from, next) => {
+    //   if (store.state.login.loginData._id) {
+    //     next('/')
+    //   } else {
+    //     next()
+    //   }
+    // }
   },
   {
     path: '/',
     component: home,
     meta: {
       showFooter: true,
-      id:1
+      id: 1
     },
   }
 ]

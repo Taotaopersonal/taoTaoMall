@@ -1,9 +1,13 @@
-<template>
+<template >
   <div class="container flashSaleContainer">
     <module-title>
       <div class="left">
         限时购
-        <count-down v-if="flashSaleModule" class="countDown" :remainTime="flashSaleModule.remainTime"></count-down>
+        <count-down
+          v-if="flashSaleModule"
+          class="countDown"
+          :remainTime="flashSaleModule.remainTime"
+        ></count-down>
       </div>
       <a class="right" href>
         更多
@@ -13,10 +17,7 @@
     <div class="cnt" v-if="flashSaleModule">
       <div v-for="(item, index) in flashSaleModule.itemList" :key="index" class="flashSaleItem">
         <div class="imgWrap">
-          <img
-            :src="item.picUrl"
-            class="img"
-          />
+          <img v-lazy="item.picUrl" class="img" />
         </div>
         <div class="price">
           <span class="actualPrice">¥{{item.activityPrice}}</span>
@@ -32,12 +33,12 @@ import moduleTitle from "components/base-module-title/module-title.vue";
 import countDown from "components/base-countDown/countDown.vue";
 export default {
   name: "FlashSale",
-  props:{
-    flashSaleModule:Object
+  props: {
+    flashSaleModule: Object
   },
   data() {
     return {
-      name:"FlashSale"
+      name: "FlashSale"
     };
   },
   components: {
@@ -53,7 +54,6 @@ export default {
 @import '../../common/stylus/font_size.styl';
 
 .flashSaleContainer {
-
   .left {
     .countDown {
       margin-left: 10px;
@@ -79,39 +79,45 @@ export default {
       height: 23px;
     }
   }
-  
-  .cnt{
-    overflow hidden
-    padding 0 10px 0 30px
-    .flashSaleItem{
-      display block
-      color #333
-      float left
-      margin-right 20px
-      padding-bottom 30px
-      .imgWrap{
-        width 216px
-        height 216px
-        background-color #f5f5f5
-        border-radius 4px /* px */
-        margin-bottom 12px
-        img{
-          display block
-          width 100%
-          height 100%
+
+  .cnt {
+    overflow: hidden;
+    padding: 0 10px 0 30px;
+
+    .flashSaleItem {
+      display: block;
+      color: #333;
+      float: left;
+      margin-right: 20px;
+      padding-bottom: 30px;
+
+      .imgWrap {
+        width: 216px;
+        height: 216px;
+        background-color: #f5f5f5;
+        border-radius: 4px; /* px */
+        margin-bottom: 12px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
         }
       }
-      .price{
-        padding-left 20px
-        .actualPrice{
-          font-size $font_1
-          color $color_1
-          margin-right 12px
+
+      .price {
+        padding-left: 20px;
+
+        .actualPrice {
+          font-size: $font_1;
+          color: $color_1;
+          margin-right: 12px;
         }
-        .retailPrice{
-          font-size $font_2
-          color #7f7f7f
-          text-decoration line-through
+
+        .retailPrice {
+          font-size: $font_2;
+          color: #7f7f7f;
+          text-decoration: line-through;
         }
       }
     }

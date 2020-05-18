@@ -14,7 +14,7 @@
             </div>
             <div class="imgWrap">
               <div class="img">
-                <img :src="categoryList[0].picUrl" alt />
+                <img v-lazy="categoryList[0].picUrl" alt />
               </div>
             </div>
           </a>
@@ -28,7 +28,7 @@
             </div>
             <div class="imgWrap">
               <div class="img">
-                <img :src="categoryList[1].picUrl" alt />
+                <img v-lazy="categoryList[1].picUrl" alt />
               </div>
             </div>
           </a>
@@ -40,7 +40,7 @@
             <div class="name">{{item.categoryName}}</div>
             <div class="imgWrap">
               <div class="img">
-                <img :src="item.picUrl" alt />
+                <img v-lazy="item.picUrl" alt />
               </div>
             </div>
           </a>

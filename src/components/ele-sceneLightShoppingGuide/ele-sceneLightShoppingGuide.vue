@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="container sceneLightShoppingGuide">
     <div class="wrap" v-for="(item, index) in sceneLightShoppingGuideModule" :key="index">
       <a :href="item.styleItem.targetUrl" v-if="item.styleItem">
@@ -12,7 +12,7 @@
             <img
               v-for="(item, index) in item.styleItem.picUrlList"
               :key="index"
-              :src="item"
+              v-lazy="item"
               class="pic"
             />
           </div>

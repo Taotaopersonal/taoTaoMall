@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="container recommandContainer">
     <module-title class="recommandTitle">
       <div class="left">人气推荐</div>

@@ -6,7 +6,7 @@
       <div class="top">
         <a class="logo" href="/"></a>
         <ele-search :totalNumbersOfProducts="totalNumbersOfProducts"></ele-search>
-        <button class="loginBtn">登录</button>
+        <button class="loginBtn" v-if="!loginData._id" @click="$router.replace('/profile')">登录</button>
       </div>
       <!-- 头部下半部分 -->
       <div class="bottom">
@@ -78,73 +78,61 @@
     </header>
     <!-- 主体内容区 -->
     <section id="wraper" ref="wraper">
-      <van-pull-refresh v-model="isLoading" success-text="刷新成功" @refresh="onRefresh">
-        <div class="big-container">
-          <!-- 商品轮播banner图 -->
-          <div id="slideWrap">
-            <ele-swiper :focusList="indexData.focusList"></ele-swiper>
-          </div>
-          <!-- 提示信息 -->
-          <div id="servicePolicy">
-            <ul class="grow">
-              <li v-for="(item, index) in indexData.policyDescList" :key="index" class="item">
-                <a href="javascript:;">
-                  <i :class="`iconfont icon-${item.icon}`"></i>
-                  <span>{{item.desc}}</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <!-- 商品分类区域 -->
-          <ele-categroies
-            v-if="indexData.kingKongModule"
-            :kingKongList="indexData.kingKongModule.kingKongList"
-          ></ele-categroies>
-          <!-- 广告区域 -->
-          <div id="adWrap">
-            <a class="adImg" href="https://act.you.163.com/act/pub/rb10rnjzwE30.html"></a>
-          </div>
-          <!-- 活动区域 -->
-          <ele-activity :indexActivityModule="indexData.indexActivityModule"></ele-activity>
-          <!-- 热销榜区 -->
-          <ele-hotSell
-            v-if="indexData.categoryHotSellModule"
-            :categoryList="indexData.categoryHotSellModule.categoryList"
-          ></ele-hotSell>
-          <!-- 人气推荐 -->
-          <ele-recommand
-            v-if="indexData.newItemList"
-            :newItemList="indexData.newItemList.slice(0,3)"
-          ></ele-recommand>
-          <!-- 限时购 -->
-          <ele-flashSale :flashSaleModule="indexData.flashSaleModule"></ele-flashSale>
-          <!-- 新品首发 -->
-          <ele-newGoods v-if="indexData.newItemList" :newItemList="indexData.newItemList.slice(2)"></ele-newGoods>
-          <!-- 场景灯购物指南 -->
-          <ele-sceneLightShoppingGuide
-            :sceneLightShoppingGuideModule="indexData.sceneLightShoppingGuideModule"
-          ></ele-sceneLightShoppingGuide>
-          <!-- 页面底部信息 -->
-          <div id="ftWrap">
-            <div class="m-ft g-row">
-              <div class="bd">
-                <a
-                  href="/downloadapp?_stat_from=search_pz_baidu_29&amp;appAwakeUrl=http%3a%2f%2fm.you.163.com"
-                  class="goApp w-button w-button-ghost w-button-s"
-                >下载APP</a>
-                <a
-                  href="https://you.163.com?_m_forcepc_=true&amp;_m_anonid_=49be5c24-1086-490e-914b-dda257f64bb1"
-                  class="goWeb w-button w-button-ghost w-button-s"
-                >电脑版</a>
-              </div>
-              <p class="copyright">
-                涛涛公司版权所有 © 1997-2020
-                <br />食品经营许可证：XXXXXXXXXXXXXXX
-              </p>
+      <!-- <van-pull-refresh v-model="isLoading" success-text="刷新成功" @refresh="onRefresh"> -->
+      <div class="big-container">
+        <!-- 商品轮播banner图 -->
+        <div id="slideWrap">
+          <ele-swiper :focusList="indexData.focusList"></ele-swiper>
+        </div>
+        <!-- 提示信息 -->
+        <ele-service-policy id="servicePolicy" :policyDescList="indexData.policyDescList"></ele-service-policy>
+        <!-- 商品分类区域 -->
+        <ele-categroies
+          v-if="indexData.kingKongModule"
+          :kingKongList="indexData.kingKongModule.kingKongList"
+        ></ele-categroies>
+        <!-- 广告区域 -->
+        <div id="adWrap">
+          <a class="adImg" href="https://act.you.163.com/act/pub/rb10rnjzwE30.html"></a>
+        </div>
+        <!-- 活动区域 -->
+        <ele-activity :indexActivityModule="indexData.indexActivityModule"></ele-activity>
+        <!-- 热销榜区 -->
+        <ele-hotSell
+          v-if="indexData.categoryHotSellModule"
+          :categoryList="indexData.categoryHotSellModule.categoryList"
+        ></ele-hotSell>
+        <!-- 人气推荐 -->
+        <ele-recommand v-if="indexData.newItemList" :newItemList="indexData.newItemList.slice(0,3)"></ele-recommand>
+        <!-- 限时购 -->
+        <ele-flashSale :flashSaleModule="indexData.flashSaleModule"></ele-flashSale>
+        <!-- 新品首发 -->
+        <ele-newGoods v-if="indexData.newItemList" :newItemList="indexData.newItemList.slice(2)"></ele-newGoods>
+        <!-- 场景灯购物指南 -->
+        <ele-sceneLightShoppingGuide
+          :sceneLightShoppingGuideModule="indexData.sceneLightShoppingGuideModule"
+        ></ele-sceneLightShoppingGuide>
+        <!-- 页面底部信息 -->
+        <div id="ftWrap">
+          <div class="m-ft g-row">
+            <div class="bd">
+              <a
+                href="/downloadapp?_stat_from=search_pz_baidu_29&amp;appAwakeUrl=http%3a%2f%2fm.you.163.com"
+                class="goApp w-button w-button-ghost w-button-s"
+              >下载APP</a>
+              <a
+                href="https://you.163.com?_m_forcepc_=true&amp;_m_anonid_=49be5c24-1086-490e-914b-dda257f64bb1"
+                class="goWeb w-button w-button-ghost w-button-s"
+              >电脑版</a>
             </div>
+            <p class="copyright">
+              涛涛公司版权所有 © 1997-2020
+              <br />食品经营许可证：XXXXXXXXXXXXXXX
+            </p>
           </div>
         </div>
-      </van-pull-refresh>
+      </div>
+      <!--</van-pull-refresh>  -->
     </section>
     <!-- 回到顶部固定控件 -->
     <footer>
@@ -168,13 +156,14 @@ import recommand from "components/ele-recommand/ele-recommand.vue";
 import flashSale from "components/ele-flashSale/ele-flashSale.vue";
 import newGoods from "components/ele-newGoods/ele-newGoods.vue";
 import sceneLightShoppingGuide from "components/ele-sceneLightShoppingGuide/ele-sceneLightShoppingGuide.vue";
+import servicePolicy from "components/base-servicePolicy/servicePolicy.vue";
 
 // 遮罩层组件
 import Vue from "vue";
 import { Overlay } from "vant";
 Vue.use(Overlay);
-
-import { Toast, PullRefresh, Button } from "vant";
+// ,PullRefresh
+import { Toast, Button } from "vant";
 import { mapActions, mapState } from "vuex";
 import {
   GET_TOTAL_NUMBERS_OF_PRODUCTS,
@@ -193,7 +182,7 @@ export default {
     };
   },
   components: {
-    [PullRefresh.name]: PullRefresh,
+    // [PullRefresh.name]: PullRefresh,
     [Button.name]: Button,
     "ele-search": search,
     "ele-swiper": swiper,
@@ -203,20 +192,23 @@ export default {
     "ele-recommand": recommand,
     "ele-flashSale": flashSale,
     "ele-newGoods": newGoods,
-    "ele-sceneLightShoppingGuide": sceneLightShoppingGuide
+    "ele-sceneLightShoppingGuide": sceneLightShoppingGuide,
+    "ele-service-policy": servicePolicy
   },
   computed: {
     ...mapState({
       totalNumbersOfProducts: state => state.home.totalNumbersOfProducts,
       indexData: state => state.home.indexData,
-      indexCateModule: state => state.home.indexCateModule
+      indexCateModule: state => state.home.indexCateModule,
+      loginData:state => state.login.loginData
     })
   },
-  created() {
+  created() {},
+  beforeMount() {
     this.initPageData();
+    // this.observeScorll();
   },
   mounted() {
-    // this.observeScorll();
     this.initCateScroll();
     this.initWholeScroll();
   },
@@ -253,17 +245,18 @@ export default {
             }
           });
           this.wraperBS.on("scroll", this.onScroll);
+          this.wraperBS.on("scrollEnd", this.onScrollEnd);
         }
       });
     },
     handleC(index) {
       this.currentIndex = index;
     },
-    onRefresh() {
-      this.initPageData();
-      Toast("刷新成功");
-      this.isLoading = false;
-    },
+    // onRefresh() {
+    //   this.initPageData();
+
+    //   this.isLoading = false;
+    // },
     // 绑定scorll监听事件
     observeScorll() {
       // console.log(this.wraperScroll.y);
@@ -288,6 +281,18 @@ export default {
       let dis = Math.abs(y);
       if (dis > 1500) this.backTopBtnisShowing = true;
       if (dis < 1500) this.backTopBtnisShowing = false;
+    },
+    onScrollEnd() {
+      // 函数防抖
+      clearTimeout(this.timer1);
+      this.timer1 = setTimeout(() => {
+        this.initPageData();
+      }, 2000);
+
+      clearTimeout(this.timer2);
+      this.timer2 = setTimeout(() => {
+        Toast.success("数据已更新");
+      }, 3000);
     }
   }
 };
@@ -303,6 +308,7 @@ export default {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+  overflow: hidden;
 
   // 头部绝对定位
   #headerWraper {
@@ -495,43 +501,15 @@ export default {
         padding-bottom: 30px;
       }
 
+      // 
       #slideWrap {
         position: relative;
         z-index: 1;
         height: 296px;
       }
 
-      // 服务政策小模块
       #servicePolicy {
         background-color: #fff;
-
-        .grow {
-          width: 100%;
-          height: 72px;
-          padding: 0 30px;
-          box-sizing: border-box;
-          display: flex;
-          flex-flow: row nowrap;
-          align-items: center;
-          zoom: 1;
-
-          .item {
-            flex: 1;
-            float: left;
-
-            a {
-              display: inline-block;
-              vertical-align: middle;
-              height: 32px;
-
-              .iconfont {
-                display: inline-block;
-                font-size: 30px;
-                color: $color_1;
-              }
-            }
-          }
-        }
       }
 
       // 广告大图

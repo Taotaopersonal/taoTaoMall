@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="container activityContainer">
     <module-title class="activityTitle">
       <span class="txt">新人专享</span>
@@ -19,7 +19,7 @@
             <div class="activityItem">
               <div class="picWrap">
                 <div class="pic">
-                  <img :src="indexActivityModule[0].picUrl" alt />
+                  <img v-lazy="indexActivityModule[0].picUrl" alt />
                 </div>
                 <div class="discount">
                   <div class="line1">{{indexActivityModule[0].activityPrice}}</div>
@@ -38,9 +38,7 @@
             <div class="activityItem">
               <div class="picWrap">
                 <div class="pic">
-                  <img
-                    :src="indexActivityModule[1].picUrl"
-                  />
+                  <img v-lazy="indexActivityModule[1].picUrl" />
                 </div>
                 <div class="discount">
                   <div class="line1">{{indexActivityModule[1].activityPrice}}</div>

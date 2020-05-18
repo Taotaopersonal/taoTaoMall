@@ -1,25 +1,6 @@
 <template>
   <div class="worthBuying">
-    <header id="headerWraper">
-      <div class="topbar">
-        <div class="content">
-          <div class="left">
-            <router-link to="/home">
-              <i class="iconfont icon-shouye1"></i>
-            </router-link>
-          </div>
-          <div class="middle">值得买</div>
-          <div class="right">
-            <router-link to>
-              <i class="iconfont icon-chaxun"></i>
-            </router-link>
-            <router-link to>
-              <i class="iconfont icon-gouwuche"></i>
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </header>
+    <base-page-header>值得买</base-page-header>
     <section id="wraper" ref="wraper">
       <vue-waterfall-easy
         :imgsArr="canUseWaterfullList"
@@ -27,10 +8,10 @@
         srcKey="picUrl"
         hrefKey="schemeUrl"
         :mobileGap="mobileGap"
+        cardAnimationClass
         :loadingTimeOut="500"
-        cardAnimationClass=""
         :loadingDotCount="0"
-        :imgWidth="0"
+        :imgWidth="400"
       >
         <div slot="waterfall-head" class="waterfullHeader">
           <div class="swiperTab-container">
@@ -53,7 +34,7 @@
                   <div v-if="item[0] && item[0].columnUrl">
                     <a :href="item[0].columnUrl" class="item">
                       <div class="topContainer">
-                        <img class="topPic" :src="item[0].picUrl" alt />
+                        <img class="topPic" v-lazy="item[0].picUrl" alt />
                       </div>
                       <div class="detail">
                         <div class="mainText">{{item[0].mainTitle}}</div>
@@ -64,7 +45,7 @@
                   <div v-if="item[1] && item[1].columnUrl">
                     <a :href="item[1].columnUrl" class="item">
                       <div class="topContainer">
-                        <img class="topPic" :src="item[1].picUrl" alt />
+                        <img class="topPic" v-lazy="item[1].picUrl" alt />
                       </div>
                       <div class="detail">
                         <div class="mainText">{{item[1].mainTitle}}</div>
@@ -77,13 +58,12 @@
             </van-swipe>
           </div>
         </div>
-
         <div class="img-info" slot-scope="props" ref="imgInfo">
           <div class="title some-info">{{canUseWaterfullList[props.index].title}}</div>
           <div class="placeHolder"></div>
           <div class="lookDetail">
             <div class="userInfo">
-              <img class="userPic" :src="canUseWaterfullList[props.index].avatar" alt />
+              <img class="userPic" v-lazy="canUseWaterfullList[props.index].avatar" alt />
               <div class="userName">{{canUseWaterfullList[props.index].nickname}}</div>
             </div>
             <div class="upArea">
@@ -109,6 +89,7 @@ Vue.use(Swipe);
 Vue.use(SwipeItem);
 import { mapActions, mapState } from "vuex";
 import { GET_NAVLIST, GET_INITWATERFULLDATA } from "store/mutation_types";
+import pageheader from "components/base-pageHeader/pageHeader.vue";
 export default {
   name: "RouteWorthBuying",
   data() {
@@ -117,14 +98,14 @@ export default {
       canUseNavList: [],
       canUseWaterfullList: [],
       page: 1,
-      imgsArr: [],
-      group: 0 // request param
+      imgsArr: []
     };
   },
   components: {
     [Swipe.name]: Swipe,
     [SwipeItem.name]: SwipeItem,
-    vueWaterfallEasy
+    vueWaterfallEasy,
+    "base-page-header": pageheader
   },
   computed: {
     ...mapState({
@@ -133,9 +114,9 @@ export default {
     }),
     width() {
       if (window.devicePixelRatio >= 3) {
-        return 90;
+        return 85;
       }
-      return 90 * window.devicePixelRatio;
+      return 85 * window.devicePixelRatio;
     },
     mobileGap() {
       if (window.devicePixelRatio >= 3) {
@@ -144,7 +125,8 @@ export default {
       return 16 * window.devicePixelRatio;
     }
   },
-  created() {
+  created() {},
+  beforeMount() {
     this.initData();
     this.getData();
   },
@@ -231,51 +213,7 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   background-color: #fff;
-
-  #headerWraper {
-    width: 100%;
-    height: 100px;
-
-    .topbar {
-      width: 100%;
-      height: 100%;
-      background-color: #fafafa;
-      border-bottom: 1px solid #d9d9d9; /* px */
-
-      .content {
-        width: 100%;
-        height: 100%;
-        padding: 0 26px 0 24px;
-
-        a {
-          display: block;
-          width: 100%;
-          height: 100%;
-        }
-
-        btwCenter();
-
-        .middle {
-          font-size: 36px;
-          color: black;
-        }
-
-        .right {
-          display: flex;
-        }
-
-        .left>a i, .right>a i {
-          font-size: 48px;
-          font-weight: 600;
-          color: black;
-        }
-
-        .right>a:last-child {
-          margin-left: 30px;
-        }
-      }
-    }
-  }
+  overflow: hidden;
 
   #wraper {
     width: 100%;
@@ -410,14 +348,18 @@ export default {
           top: 665px;
 
           .img-box {
+            width: 50%;
+
             .img-inner-box {
               width: 100%;
               height: 100%;
+              border-radius: 0 0 10px 10px;
+              overflow: hidden;
               box-shadow: none;
 
               .img-wraper {
+                height: 350px;
                 width: 100%;
-                height: 100%;
 
                 img {
                   width: 100%;

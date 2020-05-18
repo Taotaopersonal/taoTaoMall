@@ -16,7 +16,9 @@
           />
         </van-sidebar>
       </div>
-      <router-view></router-view>
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
     </section>
   </div>
 </template>
@@ -54,7 +56,8 @@ export default {
       cateNavDatas: state => state.home.cateNavDatas
     })
   },
-  created() {
+  created() {},
+  beforeMount() {
     this.initData();
   },
   mounted() {},
@@ -98,6 +101,10 @@ export default {
       height: 100%;
       background-color: #fff;
       border-right: 1px solid #d9d9d9;
+
+      /deep/.van-sidebar {
+        overflow: hidden;
+      }
     }
 
     .sidebar {

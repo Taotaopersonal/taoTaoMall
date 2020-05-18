@@ -1,14 +1,11 @@
-<template>
+<template >
   <ul class="list">
     <li class="item" v-for="(item, index) in newItemList" :key="index">
       <div class="good">
         <div class="hd">
           <div class="wraper">
             <div class="img">
-              <img
-                :src="item.listPicUrl"
-                alt
-              />
+              <img v-lazy="item.listPicUrl" alt />
             </div>
           </div>
         </div>
@@ -33,7 +30,7 @@ import toolTag from "components/tool-tag/tag.vue";
 export default {
   name: "GoodList",
   props: {
-    newItemList: Array,
+    newItemList: Array
   },
   components: {
     toolTag

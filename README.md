@@ -4,7 +4,7 @@
 
 该项目是一个B/S架构的微型网上商城应用,仿网易严选商城.
 
-开发技术栈为:**Vue** | **Node.js** | **[mongoDB]**
+开发技术栈为: **Vue** | **Node.js** | **[mongoDB]**
 
 开发环境: **vueRouter** | **Vuex** 
 

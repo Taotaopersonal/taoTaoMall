@@ -1,5 +1,5 @@
-<template>
-  <div class="topSearchIpt">
+<template >
+  <div class="topSearchIpt" @click="$router.replace('/search')">
     <i class="icon"></i>
     <span class="placeholder">搜索商品,共{{totalNumbersOfProducts}}款好物</span>
   </div>

@@ -8,7 +8,7 @@
       </a>
     </module-title>
     <div class="m-indexItem m-goodGrid">
-        <good-list :newItemList="newItemList"></good-list>
+      <good-list :newItemList="newItemList"></good-list>
     </div>
   </div>
 </template>
@@ -19,14 +19,14 @@ import moduleTitle from "components/base-module-title/module-title.vue";
 import goodList from "components/base-goodList/goodList.vue";
 export default {
   name: "NewGoods",
-  props:{
-    newItemList:Array
+  props: {
+    newItemList: Array
   },
-  data(){
-    return{
-      goodlist:[0,1,2,3,4,5],
-      txtObj:["","明星商品日"]
-    }
+  data() {
+    return {
+      goodlist: [0, 1, 2, 3, 4, 5],
+      txtObj: ["", "明星商品日"]
+    };
   },
   components: {
     moduleTitle,

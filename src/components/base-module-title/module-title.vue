@@ -1,4 +1,4 @@
-<template>
+<template >
   <div class="moduleTitle">
     <slot></slot>
   </div>

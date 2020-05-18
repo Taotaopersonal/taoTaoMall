@@ -1,6 +1,6 @@
-<template>
+<template >
   <div class="swiper-container" ref="swiperContainer">
-    <van-swipe class="swiper-wrapper" :stop-propagation="false" :lazy-render="false">
+    <van-swipe class="swiper-wrapper" :stop-propagation="false" :lazy-render="true">
       <van-swipe-item  v-for="(item, index) in focusList" :key="index" class="swiper-slide">
         <a :href="item.targetUrl">
           <img v-lazy="item.picUrl" />
@@ -12,11 +12,11 @@
 
 <script>
 // 懒加载组件
-import Vue from "vue";
-import { Lazyload } from "vant";
-Vue.use(Lazyload, {
-  error: "@/assets/logo.png"
-});
+// import Vue from "vue";
+// import { Lazyload } from "vant";
+// Vue.use(Lazyload, {
+//   error: "@/assets/logo.png"
+// });
 import { Swipe, SwipeItem } from "vant";
 
 export default {
@@ -52,6 +52,15 @@ export default {
         left: 0;
         top: 50%;
         transform: translateY(-50%);
+      }
+    }
+
+    /deep/.van-swipe__indicators{
+      .van-swipe__indicator{
+        width 40px
+        height 2px
+        background-color rgba(255,255,255,1)
+        border-radius 0
       }
     }
   }

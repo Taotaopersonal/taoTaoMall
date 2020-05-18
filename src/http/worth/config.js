@@ -1,5 +1,6 @@
 // 该文件是发请求需要的原材料
 export default {
+  // baseUrl: "https://m.you.163.com",
   name: 'worth',
   api: {
     getNavList: {
