@@ -9,7 +9,7 @@ import loginByPhone from 'pages/route-loginByPhone/loginByPhone.vue'
 import loginByPwd from 'pages/route-loginByPwd/loginByPwd.vue'
 
 
-// import store from 'store'
+import store from 'store'
 export default [{
     path: '/home',
     component: home,
@@ -78,13 +78,13 @@ export default [{
     meta: {
       showFooter: false
     },
-    // beforeEnter: (to, from, next) => {
-    //   if (store.state.login.loginData._id) {
-    //     next('/')
-    //   } else {
-    //     next()
-    //   }
-    // }
+    beforeEnter: (to, from, next) => {
+      if (store.state.login.token) {
+        next('/profile')
+      } else {
+        next()
+      }
+    }
   },
   {
     path: "/loginByPwd",
@@ -92,13 +92,13 @@ export default [{
     meta: {
       showFooter: false
     },
-    // beforeEnter: (to, from, next) => {
-    //   if (store.state.login.loginData._id) {
-    //     next('/')
-    //   } else {
-    //     next()
-    //   }
-    // }
+    beforeEnter: (to, from, next) => {
+      if (store.state.login.token) {
+        next('/profile')
+      } else {
+        next()
+      }
+    }
   },
   {
     path: '/',

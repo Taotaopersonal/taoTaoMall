@@ -19,9 +19,9 @@ let router = new Router({
 
 // 全局前置守卫判断登录状态,进行相关路由选择
 router.beforeEach(async (to, from, next) => {
+  if (to.path === '/cart' || to.path === '/profile') await store.dispatch(AUTO_LOGIN)
   // 这样写效率很低,每次路由切换都要去验证token是否过期,或者token是否正确
-  await store.dispatch(AUTO_LOGIN)
-  // if (to.path !== '/login') {
+  // if (to.path !== '/loginByPhone' || to.path !== '/loginByPwd') {
   //   if (store.state.login.loginData._id) {
   //     next()
   //   } else {
@@ -29,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
   //       message: '请先登录',
   //       duration: 2000,
   //       onClose() {
-  //         next('/login')
+  //         next('/profile')
   //       }
   //     })
   //   }

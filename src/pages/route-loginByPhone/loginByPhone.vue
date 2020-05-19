@@ -72,7 +72,7 @@ export default {
   data: () => ({
     times: 0,
     flag: true,
-    loginWay:"message", //登录方式
+    loginWay: "message", //登录方式
 
     // 表单数据
     phoneNumber: "",
@@ -83,16 +83,16 @@ export default {
     "base-page-header": pageheader
   },
   computed: {
+    ...mapState({
+      loginData: state => state.login.loginData
+    }),
     phoneNumberIsRight() {
       let res = this.phoneReg.test(this.phoneNumber);
       return this.flag && res;
     },
     hasImport() {
       return this.phoneNumber ? true : false;
-    },
-    ...mapState({
-      loginData: state => state.login.loginData
-    })
+    }
   },
   methods: {
     ...mapActions([GET_LOGIN_INFO]),

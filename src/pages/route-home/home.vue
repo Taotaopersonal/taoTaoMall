@@ -162,8 +162,8 @@ import servicePolicy from "components/base-servicePolicy/servicePolicy.vue";
 import Vue from "vue";
 import { Overlay } from "vant";
 Vue.use(Overlay);
-// ,PullRefresh
-import { Toast, Button } from "vant";
+// Toast,PullRefresh
+import { Button } from "vant";
 import { mapActions, mapState } from "vuex";
 import {
   GET_TOTAL_NUMBERS_OF_PRODUCTS,
@@ -200,7 +200,7 @@ export default {
       totalNumbersOfProducts: state => state.home.totalNumbersOfProducts,
       indexData: state => state.home.indexData,
       indexCateModule: state => state.home.indexCateModule,
-      loginData:state => state.login.loginData
+      loginData: state => state.login.loginData
     })
   },
   created() {},
@@ -289,10 +289,10 @@ export default {
         this.initPageData();
       }, 2000);
 
-      clearTimeout(this.timer2);
-      this.timer2 = setTimeout(() => {
-        Toast.success("数据已更新");
-      }, 3000);
+      // clearTimeout(this.timer2);
+      // this.timer2 = setTimeout(() => {
+      //   Toast.success("数据已更新");
+      // }, 3000);
     }
   }
 };

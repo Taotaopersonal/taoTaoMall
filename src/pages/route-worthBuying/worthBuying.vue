@@ -114,9 +114,9 @@ export default {
     }),
     width() {
       if (window.devicePixelRatio >= 3) {
-        return 85;
+        return 90;
       }
-      return 85 * window.devicePixelRatio;
+      return 90 * window.devicePixelRatio;
     },
     mobileGap() {
       if (window.devicePixelRatio >= 3) {

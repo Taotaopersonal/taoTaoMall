@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
     <!-- 底部固定导航区 -->
     <ele-navigator v-show="$route.meta.showFooter"></ele-navigator>
   </div>

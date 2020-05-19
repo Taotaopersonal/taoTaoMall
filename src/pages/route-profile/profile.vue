@@ -3,7 +3,7 @@
     <base-page-header class="header">
       <img class="logo" src="./img/logo.png" alt />
     </base-page-header>
-    <div class="ctn">
+    <div class="ctnOfBeforeLogin" v-if="!token">
       <div class="bigLogo">
         <img class="logo" src="./img/logo.png" alt />
       </div>
@@ -17,16 +17,43 @@
       </div>
       <div class="welTxt">欢迎使用涛涛商城</div>
     </div>
+    <div class="ctnOfAfterLogin" v-if="token">
+      <div class="bigLogo">
+        <img class="logo" src="./img/logo.png" alt />
+      </div>
+      <button class="outBtn" @click="loginOut">退出登录</button>
+      <div class="welTxt">欢迎使用涛涛商城</div>
+    </div>
   </div>
 </template>
 
 <script>
 import pageheader from "components/base-pageHeader/pageHeader.vue";
-
+import { Toast } from "vant";
+import { mapState, mapActions } from "vuex";
+import { RESET_LOGIN_INFO } from "store/mutation_types";
 export default {
   name: "RouteProfile",
   components: {
     "base-page-header": pageheader
+  },
+  computed: {
+    ...mapState({
+      token: state => state.login.token
+    })
+  },
+  methods: {
+    ...mapActions([RESET_LOGIN_INFO]),
+    async loginOut() {
+      await this[RESET_LOGIN_INFO]();
+      Toast.success({
+        message: "注销成功！",
+        duration: 2000,
+        onClose: () => {
+          this.$router.replace("/profile");
+        }
+      });
+    }
   }
 };
 </script>
@@ -41,7 +68,7 @@ export default {
   height: 100%;
   overflow: hidden;
 
-  .ctn {
+  .ctnOfBeforeLogin, .ctnOfAfterLogin {
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -95,6 +122,18 @@ export default {
         margin-bottom: 50px;
       }
     }
+  }
+
+  .outBtn {
+    position: absolute;
+    bottom: 150px;
+    width: 88%;
+    height: 80px;
+    align-items: center;
+    line-height: 80px;
+    color: #fff;
+    border-radius: 10px;
+    background-color: $color_1;
   }
 
   .welTxt {

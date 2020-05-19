@@ -11,7 +11,7 @@
         </div>
       </div>
     </header>
-    <div class="ctn">
+    <div class="ctnBeforeLogin" v-if="!token">
       <div class="container">
         <div class="img"></div>
         <div class="txt">
@@ -19,12 +19,15 @@
         </div>
       </div>
     </div>
+    <div class="ctnAfterLogin" v-if="token">
+      <div class="container">这里展示的是用户购物车详情页</div>
+    </div>
   </div>
 </template>
 
 <script>
 import servicePolicy from "components/base-servicePolicy/servicePolicy.vue";
-
+import { mapState } from "vuex";
 export default {
   name: "RouteCart",
   data() {
@@ -50,6 +53,11 @@ export default {
   },
   components: {
     "ele-service-policy": servicePolicy
+  },
+  computed: {
+    ...mapState({
+      token: state => state.login.token
+    })
   }
 };
 </script>
@@ -64,7 +72,7 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   background-color: #fff;
-  overflow hidden
+  overflow: hidden;
 
   .cartHeader {
     width: 100%;
@@ -99,7 +107,7 @@ export default {
     }
   }
 
-  .ctn {
+  .ctnBeforeLogin, .ctnAfterLogin {
     flex: 1;
     background-color: #f4f4f4;
 
@@ -133,11 +141,11 @@ export default {
           align-items: center;
           width: 65%;
           height: 100%;
-          margin-top 50px
-          border-radius 5px
+          margin-top: 50px;
+          border-radius: 5px;
           background-color: $color_1;
-          color #ffffff
-          font-size 30px
+          color: #ffffff;
+          font-size: 30px;
         }
       }
     }
