@@ -25,7 +25,8 @@ export default {
       corsUrl: "/4000",
       token() {
         return local.get('token', '')
-      }
+      },
+      $toast:true
     }
   }
 }

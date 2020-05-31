@@ -1,6 +1,6 @@
 import {
-  loading,
-  success,
+  // loading,
+  // success,
   fail
 } from './toast'
 // http工具文件，该文件负责接受axios实例，和相关模块config信息，加工处理返回相应的请求方法组成的对象
@@ -82,7 +82,7 @@ export default (axiosIns, config = {}) => {
 
 
       try {
-        $toast && loading()
+        // $toast && loading()
         beforeReq && Object.prototype.toString.call(beforeReq) === '[object Function]' && beforeReq.call(config)
         switch (method) {
           case "get":
@@ -104,7 +104,7 @@ export default (axiosIns, config = {}) => {
             })
             break;
         }
-        $toast && success()
+        // $toast && success()
         afterReqSuccess && Object.prototype.toString.call(afterReqSuccess) === '[object Function]' && afterReqSuccess.call(config)
 
       } catch (error) {

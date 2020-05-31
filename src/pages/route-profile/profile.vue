@@ -21,6 +21,14 @@
       <div class="bigLogo">
         <img class="logo" src="./img/logo.png" alt />
       </div>
+      <div class="profileInfo" v-if="loginData">
+        <div class="tit">
+          尊敬的用户：
+          <span class="username">{{loginData.name || loginData.phone}}</span>
+        </div>
+        <br />
+        <div class="wel">欢迎使用涛涛购物商城!</div>
+      </div>
       <button class="outBtn" @click="loginOut">退出登录</button>
       <div class="welTxt">欢迎使用涛涛商城</div>
     </div>
@@ -39,7 +47,8 @@ export default {
   },
   computed: {
     ...mapState({
-      token: state => state.login.token
+      token: state => state.login.token,
+      loginData: state => state.login.loginData
     })
   },
   methods: {
@@ -63,15 +72,17 @@ export default {
 @import '../../common/stylus/color.styl';
 
 .profile {
+  display: flex;
+  flex-flow: column nowrap;
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
 
   .ctnOfBeforeLogin, .ctnOfAfterLogin {
+    position: relative;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
     align-items: center;
     flex: 1;
     background-color: #f2f5f4;
@@ -89,6 +100,30 @@ export default {
         display: block;
         width: 100%;
         height: 100%;
+      }
+    }
+
+    .profileInfo {
+      position: absolute;
+      top: 35%;
+      width: 88%;
+      font-size: 32px;
+      color: #fff;
+      background-color: $color_1;
+      border-radius: 10px;
+
+      .tit {
+        margin-left: 6%;
+
+        .username {
+          font-size: 36px;
+          font-weight: bolder;
+          text-decoration: underline;
+        }
+      }
+
+      .wel {
+        text-align: center;
       }
     }
 

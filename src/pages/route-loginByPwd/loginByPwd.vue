@@ -118,7 +118,6 @@ export default {
   methods: {
     ...mapActions([GET_LOGIN_INFO]),
     onSubmit() {
-      console.log(123456);
       this.login();
     },
     async login() {
@@ -135,7 +134,6 @@ export default {
       this.name = "";
     },
     tapChangeImg() {
-      console.log(this.$refs.captcha.src);
       this.$refs.captcha.src = `${
         this.staticImgBaseUrl
       }/captcha?time=${Date.now()}`;

@@ -25,7 +25,7 @@ module.exports = {
         pathRewrite: {
           "^/wangyi": ""
         },
-        secure:true
+        secure: true
       }
     },
     open: true,
@@ -44,5 +44,6 @@ module.exports = {
         'store': resolve('src/store')
       }
     }
-  }
+  },
+  productionSourceMap: false
 }

@@ -21,7 +21,7 @@
                 src="https://m.you.163.com/topic/index/img/topic_logo.c2284970.png"
                 alt
               />
-              <div class="text">严选好物&nbsp;用心生活</div>
+              <div class="text">涛淘好物&nbsp;用心生活</div>
               <img
                 class="bgImg"
                 src="https://m.you.163.com/topic/index/img/topic_title_bg.2373a140.png"

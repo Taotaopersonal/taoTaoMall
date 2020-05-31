@@ -27,10 +27,10 @@ function LoginSuccess(commit, data, loginWay, tapChangeImg) {
   Router.replace('/profile')
 }
 
-function LoginFail(loginWay, tapChangeImg) {
+function LoginFail(loginWay, tapChangeImg, msg) {
   if (loginWay === "password") tapChangeImg()
   Toast.fail({
-    message: "登录失败，请重新登录！",
+    message: msg,
     duration: 2000
   })
 }
@@ -60,7 +60,7 @@ export default {
       })
     }
     if (body.code === OK) LoginSuccess(commit, body.data, loginWay, tapChangeImg)
-    if (body.code === ERROR) LoginFail(loginWay, tapChangeImg)
+    if (body.code === ERROR) LoginFail(loginWay, tapChangeImg, body.msg)
   },
   async [RESET_LOGIN_INFO]({
     commit
@@ -95,13 +95,13 @@ export default {
       }
     } catch (error) {
       await commit(RESET_LOGIN_INFO)
-      // Toast.fail({
-      //   message: "登录超时，请重新登录",
-      //   duration: 2000,
-      //   onClose() {
-      //     Router.replace('/login')
-      //   }
-      // })
+      Toast.fail({
+        message: "登录超时，请重新登录",
+        duration: 2000,
+        // onClose() {
+        //   Router.replace('/profile')
+        // }
+      })
     }
   }
 }
